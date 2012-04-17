@@ -1,0 +1,47 @@
+This script allows you to backup Virtual Machines managed by libvirt.
+It has only be tested with KVM based VM
+This script will dump:
+* each block devices
+* optionnally the memory (if --state flag is given)
+* the XML description of the VM
+ 
+These files are writen in a temporary backup dir. Everything is done
+in order to minimize donwtime of the guest. For example, it takes
+a snapshot of the block devices (if backed with LVM) so the guest is
+just paused for a couple of seconds. Once this is done, the guest is
+resumed, and the script starts to dump the snapshot.
+ 
+Once a backup is finished, you'll have several files in the backup
+directory. Let's take an example with a VM called my_vm which has
+two virtual disks: hda and hdb. You have passed the --state flag:
+* my_vm.lock: lock file to prevent another backup to run at the same time
+* my_vm.xml: this file is the XML description of the VM (for libvirt configuraiton)
+* my_vm_hda.img: this file is an image of the hda drive of the guest
+* my_vm_hdb.img: this file is an image of the hdb drive of the guest
+* my_vm.state: this is a dump of the memory (result of virsh save my_vm my_vm.state)
+ 
+This script was made to be ran with BackupPC pre/post commands.
+In the pre-backup phase, you dump everything then, backuppc backups,
+compress, pools etc... the dumped file. Eventually, when the backup is finished
+The script is called with the --cleanup flag, which cleanups everything.
+ 
+Some examples:
+
+Backup the VM named mail01 and devsrv. Also dump the memory.
+Exclude any virtual disk attached as vdb or hdb and on the fly
+compress the dumped disks (uses gzip by default)
+virt-backup.pl --dump --vm=mail01,devsrv --state --exclude=vdb,hdb --compress
+ 
+Remove all the files related to mail01 VM in the backup directory
+virt-backup.pl --cleanup --vm=mail01
+ 
+Backup devsrv, use 10G for LVM snapshots (if available), do not dump the memory
+(the guest will just be paused while we take a snapshot)
+Keep the lock file present after the dump
+virt-backup.pl --dump --vm=devsrv --snapsize=10G --keep-lock
+ 
+Backup devsrv, and disable LVM snapshots
+virt-backup.pl --dump --vm=devsrv --no-snapshot
+ 
+Backup mail01, and enable debug (verbose output)
+virt-backup.pl --dump --vm=mail01 --debug
