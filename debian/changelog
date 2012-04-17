@@ -1,3 +1,10 @@
+virt-backup (1.0ubuntu1) lucid; urgency=low
+
+  * Changed path to lvm tools to confirm with Debian/Ubuntu default and
+    added lvm2 dependency
+
+ -- Rashit Azizbaev <syndicut@yandex-team.ru>  Tue, 17 Apr 2012 15:08:31 +0400
+
 virt-backup (1.0) lucid; urgency=low
 
   * Initial Release.

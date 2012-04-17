@@ -8,7 +8,7 @@ Homepage: http://repo.firewall-services.com/misc/virt/virt-backup.pl
 
 Package: virt-backup
 Architecture: all
-Depends: ${misc:Depends}, ${perl:Depends}, libsys-virt-perl, libxml-simple-perl
+Depends: ${misc:Depends}, ${perl:Depends}, libsys-virt-perl, libxml-simple-perl, lvm2
 Description: Backup Virtual Machines managed by libvirt.
  This script allows you to backup Virtual Machines managed by libvirt.
  It has only be tested with KVM based VM
