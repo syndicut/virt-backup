@@ -1,0 +1,13 @@
+Source: virt-backup
+Section: unknown
+Priority: extra
+Maintainer: Rashit Azizbaev <syndicut@yandex-team.ru>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: <insert the upstream URL, if relevant>
+
+Package: virt-backup
+Architecture: all
+Depends: ${misc:Depends}
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
