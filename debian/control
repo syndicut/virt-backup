@@ -1,13 +1,18 @@
 Source: virt-backup
-Section: unknown
+Section: misc
 Priority: extra
 Maintainer: Rashit Azizbaev <syndicut@yandex-team.ru>
 Build-Depends: debhelper (>= 7)
 Standards-Version: 3.8.3
-Homepage: <insert the upstream URL, if relevant>
+Homepage: http://repo.firewall-services.com/misc/virt/virt-backup.pl
 
 Package: virt-backup
 Architecture: all
-Depends: ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: ${misc:Depends}, libsys-virt-perl, libxml-simple-perl
+Description: This script allows you to backup Virtual Machines managed by libvirt.
+ This script allows you to backup Virtual Machines managed by libvirt.
+ It has only be tested with KVM based VM
+ This script will dump:
+ * each block devices
+ * optionnally the memory (if --state flag is given)
+ * the XML description of the VM
