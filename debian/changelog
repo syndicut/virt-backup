@@ -1,3 +1,9 @@
+virt-backup (1.1) lucid; urgency=low
+
+  * Added sleep before vm resume to avoid race conditions in libvirtd
+
+ -- Rashit Azizbaev <syndicut@yandex-team.ru>  Thu, 19 Apr 2012 20:50:39 +0400
+
 virt-backup (1.0ubuntu1) lucid; urgency=low
 
   * Changed path to lvm tools to confirm with Debian/Ubuntu default and

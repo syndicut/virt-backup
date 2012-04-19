@@ -338,6 +338,7 @@ sub run_dump{
         print "\nWe can run a live backup\n" if ($opts{debug});
         if ($opts{wasrunning}){
             if ($opts{state}){
+                sleep(1);
                 restore_vm();
             }
             else{
